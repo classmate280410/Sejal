@@ -1,139 +1,2070 @@
-#yes{
-background:linear-gradient(45deg,#ff2d75,#ff66a3);
-color:#fff;
-box-shadow:0 0 15px #ff2d75,0 0 35px #ff66a3;
-animation:yesGlow 1.4s infinite alternate;
-}
+/* =========================================
+   SEJAL'S DIWALI WEBSITE
+   MAIN CSS STYLESHEET
+   ========================================= */
 
-#yes:hover{
-transform:scale(1.12);
-}
 
-@keyframes yesGlow{
-from{
-box-shadow:0 0 15px #ff2d75,0 0 35px #ff66a3;
-}
-to{
-box-shadow:0 0 30px #ff2d75,0 0 60px #ff66a3;
-}
-}
+/* Google Fonts */
 
-.teddy{
-font-size:120px;
-margin:25px 0;
-animation:bounce 2s infinite,teddyGlow 2s infinite alternate;
-filter:drop-shadow(0 0 10px pink);
-}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-@keyframes teddyGlow{
-from{
-filter:drop-shadow(0 0 8px pink);
-}
-to{
-filter:drop-shadow(0 0 25px deeppink);
-}
 
-}
+/* =========================================
+   1. ROOT VARIABLES
+   ========================================= */
 
-.card::before{
-content:"";
-position:absolute;
-inset:-3px;
-border-radius:30px;
-background:linear-gradient(45deg,#ff66a3,#fff,#ff2d75,#ffd1dc);
-background-size:300% 300%;
-animation:borderGlow 6s linear infinite;
-z-index:-1;
-}
+:root {
 
-@keyframes borderGlow{
+    --bg-dark: #0c071b;
 
-0%{
-background-position:0% 50%;
-}
+    --bg-purple: #160d2d;
 
-50%{
-background-position:100% 50%;
-}
+    --bg-card: rgba(255, 255, 255, 0.055);
 
-100%{
-background-position:0% 50%;
-}
+    --gold: #ffd166;
+
+    --gold-light: #ffe7a3;
+
+    --orange: #ff9d42;
+
+    --pink: #ff76b9;
+
+    --purple: #9c75ff;
+
+    --white: #ffffff;
+
+    --text-muted: #c4bad7;
+
+    --border: rgba(255, 209, 102, 0.2);
+
+    --glass: rgba(255, 255, 255, 0.07);
+
+    --shadow-gold: 0 0 35px rgba(255, 209, 102, 0.15);
+
+    --font-heading: 'Cinzel', serif;
+
+    --font-body: 'Poppins', sans-serif;
+
+    --transition: all 0.4s ease;
 
 }
 
-.card::after{
-content:"";
-position:absolute;
-inset:3px;
-border-radius:28px;
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(18px);
-z-index:-1;
-}
 
-h1{
-animation:titleGlow 2s infinite alternate;
-}
+/* =========================================
+   2. UNIVERSAL RESET
+   ========================================= */
 
-@keyframes titleGlow{
+* {
 
-from{
-text-shadow:0 0 10px #fff,0 0 20px hotpink;
-}
+    margin: 0;
 
-to{
-text-shadow:0 0 20px #fff,0 0 45px deeppink;
-}
+    padding: 0;
+
+    box-sizing: border-box;
 
 }
 
-body::before{
-content:"";
-position:absolute;
-width:300px;
-height:300px;
-background:#ffffff22;
-border-radius:50%;
-top:-100px;
-left:-100px;
-filter:blur(70px);
-animation:blob1 12s infinite alternate;
-}
 
-body::after{
-content:"";
-position:absolute;
-width:350px;
-height:350px;
-background:#ff66aa22;
-border-radius:50%;
-bottom:-120px;
-right:-120px;
-filter:blur(70px);
-animation:blob2 10s infinite alternate;
-}
+html {
 
-@keyframes blob1{
+    scroll-behavior: smooth;
 
-from{
-transform:translate(0,0);
-}
-
-to{
-transform:translate(120px,80px);
-}
+    scroll-padding-top: 85px;
 
 }
 
-@keyframes blob2{
 
-from{
-transform:translate(0,0);
+body {
+
+    min-height: 100vh;
+
+    background: var(--bg-dark);
+
+    color: var(--white);
+
+    font-family: var(--font-body);
+
+    overflow-x: hidden;
+
+    line-height: 1.7;
+
 }
 
-to{
-transform:translate(-120px,-80px);
-}
+
+/* Selection effect */
+
+::selection {
+
+    background: var(--gold);
+
+    color: #190e27;
 
 }
+
+
+a {
+
+    text-decoration: none;
+
+    color: inherit;
+
+}
+
+
+button {
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+}
+
+
+/* Custom scrollbar */
+
+::-webkit-scrollbar {
+
+    width: 8px;
+
+}
+
+
+::-webkit-scrollbar-track {
+
+    background: #0c071b;
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background: linear-gradient(
+        var(--gold),
+        var(--orange)
+    );
+
+    border-radius: 20px;
+
+}
+
+
+/* =========================================
+   3. BACKGROUND ATMOSPHERE
+   ========================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(112, 61, 180, 0.18),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(255, 157, 66, 0.10),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(105, 65, 150, 0.08),
+            transparent 55%
+        );
+
+}
+
+
+#fireworks-container,
+#particles-container,
+#diyas-container {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+
+}
+
+
+#animationCanvas {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 2;
+
+}
+
+
+/* =========================================
+   4. LOADING SCREEN
+   ========================================= */
+
+#loader {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    z-index: 10000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #0c071b;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+
+}
+
+
+#loader.is-hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+.loader-content {
+
+    text-align: center;
+
+    padding: 25px;
+
+}
+
+
+.loader-diya {
+
+    font-size: 65px;
+
+    animation: diyaGlow 1.5s infinite alternate;
+
+}
+
+
+.loader-content h2 {
+
+    font-family: var(--font-heading);
+
+    color: var(--gold);
+
+    font-size: 23px;
+
+    margin-top: 20px;
+
+}
+
+
+.loader-content p {
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+
+    margin-top: 8px;
+
+}
+
+
+.loader-line {
+
+    width: 190px;
+
+    height: 4px;
+
+    margin: 25px auto;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.1);
+
+}
+
+
+.loader-line::after {
+
+    content: "";
+
+    display: block;
+
+    height: 100%;
+
+    width: 45%;
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+        90deg,
+        var(--orange),
+        var(--gold-light)
+    );
+
+    animation: loadingMove 1.5s infinite ease-in-out;
+
+}
+
+
+@keyframes loadingMove {
+
+    0% {
+
+        transform: translateX(-110%);
+
+    }
+
+    100% {
+
+        transform: translateX(240%);
+
+    }
+
+}
+
+
+@keyframes diyaGlow {
+
+    from {
+
+        transform: scale(0.9);
+
+        filter: drop-shadow(
+            0 0 8px var(--orange)
+        );
+
+    }
+
+    to {
+
+        transform: scale(1.12);
+
+        filter: drop-shadow(
+            0 0 30px var(--gold)
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   5. MAIN HEADER
+   ========================================= */
+
+.main-header {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    width: 100%;
+
+    background: rgba(12, 7, 27, 0.82);
+
+    backdrop-filter: blur(18px);
+
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.navbar {
+
+    max-width: 1350px;
+
+    min-height: 75px;
+
+    padding: 12px 5%;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--gold);
+
+    font-family: var(--font-heading);
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+}
+
+
+.logo-icon {
+
+    font-size: 27px;
+
+    filter: drop-shadow(
+        0 0 10px var(--orange)
+    );
+
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+}
+
+
+.nav-links a {
+
+    position: relative;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    transition: var(--transition);
+
+}
+
+
+.nav-links a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -7px;
+
+    width: 0;
+
+    height: 2px;
+
+    background: var(--gold);
+
+    transition: width 0.3s ease;
+
+}
+
+
+.nav-links a:hover {
+
+    color: var(--gold);
+
+}
+
+
+.nav-links a:hover::after {
+
+    width: 100%;
+
+}
+
+
+/* Music Button */
+
+.music-button {
+
+    border: 1px solid rgba(255, 209, 102, 0.5);
+
+    background: rgba(255, 209, 102, 0.08);
+
+    color: var(--gold);
+
+    padding: 10px 18px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    transition: var(--transition);
+
+}
+
+
+.music-button:hover {
+
+    background: var(--gold);
+
+    color: #190e27;
+
+    box-shadow: 0 0 25px rgba(255, 209, 102, 0.3);
+
+    transform: translateY(-3px);
+
+}
+
+
+/* =========================================
+   6. COMMON SECTION STYLING
+   ========================================= */
+
+main {
+
+    position: relative;
+
+    z-index: 3;
+
+}
+
+
+section {
+
+    position: relative;
+
+    padding: 110px 7%;
+
+    overflow: hidden;
+
+}
+
+
+.section-heading {
+
+    text-align: center;
+
+    margin-bottom: 65px;
+
+}
+
+
+.section-label {
+
+    display: inline-block;
+
+    color: var(--gold);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.section-heading h2 {
+
+    font-family: var(--font-heading);
+
+    font-size: clamp(30px, 5vw, 52px);
+
+    font-weight: 700;
+
+}
+
+
+.section-heading p {
+
+    color: var(--text-muted);
+
+    font-size: 14px;
+
+    margin-top: 15px;
+
+}
+
+
+.gold-text {
+
+    background: linear-gradient(
+
+        120deg,
+
+        #fff1b8,
+
+        #ffd166,
+
+        #ff9d42,
+
+        #fff0a8
+
+    );
+
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+    animation: goldShine 4s linear infinite;
+
+}
+
+
+@keyframes goldShine {
+
+    to {
+
+        background-position: 200% center;
+
+    }
+
+}
+
+
+/* =========================================
+   7. HERO SECTION
+   ========================================= */
+
+.hero-section {
+
+    min-height: calc(100svh - 75px);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    padding-top: 65px;
+
+    padding-bottom: 65px;
+
+    background:
+
+        radial-gradient(
+            ellipse at 50% 45%,
+            rgba(130, 78, 180, 0.17),
+            transparent 65%
+        );
+
+}
+
+
+.hero-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+
+    height: 450px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 209, 102, 0.07);
+
+    animation: rotateGlow 25s linear infinite;
+
+}
+
+
+.hero-section::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+
+    height: 600px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 209, 102, 0.04);
+
+    animation: rotateGlow 35s linear infinite reverse;
+
+}
+
+
+@keyframes rotateGlow {
+
+    from {
+
+        transform: rotate(0deg) scale(1);
+
+    }
+
+    to {
+
+        transform: rotate(360deg) scale(1.08);
+
+    }
+
+}
+
+
+.hero-top-text {
+
+    position: relative;
+
+    z-index: 3;
+
+    color: var(--gold);
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    font-weight: 600;
+
+    margin-bottom: 30px;
+
+    animation: fadeUp 1s ease both;
+
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 4;
+
+    max-width: 850px;
+
+    width: 100%;
+
+}
+
+
+.greeting-small {
+
+    color: var(--text-muted);
+
+    font-size: 15px;
+
+    letter-spacing: 2px;
+
+    animation: fadeUp 1s 0.2s both;
+
+}
+
+
+.main-title {
+
+    font-family: var(--font-heading);
+
+    font-size: clamp(55px, 10vw, 115px);
+
+    line-height: 1.2;
+
+    font-weight: 700;
+
+    margin-top: 15px;
+
+    text-shadow: 0 5px 30px rgba(255, 209, 102, 0.12);
+
+    animation: fadeUp 1s 0.3s both;
+
+}
+
+
+.name-title {
+
+    font-family: var(--font-heading);
+
+    color: var(--pink);
+
+    font-size: clamp(30px, 5vw, 48px);
+
+    margin-top: 5px;
+
+    text-shadow: 0 0 25px rgba(255, 118, 185, 0.3);
+
+    animation: fadeUp 1s 0.5s both;
+
+}
+
+
+.hero-description {
+
+    max-width: 650px;
+
+    margin: 25px auto;
+
+    color: var(--text-muted);
+
+    font-size: 14px;
+
+    line-height: 2;
+
+    animation: fadeUp 1s 0.7s both;
+
+}
+
+
+/* Fireworks GIF */
+
+.hero-gif {
+
+    margin: 25px auto;
+
+    animation: fadeUp 1s 0.9s both;
+
+}
+
+
+.fireworks-gif {
+
+    width: 180px;
+
+    max-width: 60%;
+
+    height: auto;
+
+    object-fit: contain;
+
+    filter: drop-shadow(
+        0 0 20px rgba(255, 209, 102, 0.25)
+    );
+
+}
+
+
+.explore-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    background: linear-gradient(
+        120deg,
+        #ffd166,
+        #ff9d42
+    );
+
+    color: #24132a;
+
+    padding: 15px 27px;
+
+    border-radius: 40px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-top: 20px;
+
+    box-shadow: 0 8px 30px rgba(255, 157, 66, 0.2);
+
+    transition: var(--transition);
+
+}
+
+
+.explore-button:hover {
+
+    transform: translateY(-6px) scale(1.03);
+
+    box-shadow: 0 12px 40px rgba(255, 157, 66, 0.4);
+
+}
+
+
+.explore-button span {
+
+    font-size: 19px;
+
+    animation: arrowMove 1s infinite alternate;
+
+}
+
+
+@keyframes arrowMove {
+
+    from {
+
+        transform: translateY(-3px);
+
+    }
+
+    to {
+
+        transform: translateY(3px);
+
+    }
+
+}
+
+
+.hero-bottom {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    color: rgba(255, 255, 255, 0.4);
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+}
+
+
+/* =========================================
+   8. DOCTOR DREAM SECTION
+   ========================================= */
+
+.dream-section {
+
+    background: linear-gradient(
+
+        180deg,
+
+        rgba(22, 13, 45, 0.5),
+
+        rgba(22, 13, 45, 0.95)
+
+    );
+
+}
+
+
+.doctor-card {
+
+    position: relative;
+
+    max-width: 800px;
+
+    margin: auto;
+
+    padding: 55px 40px;
+
+    text-align: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 25px;
+
+    background: var(--glass);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow: var(--shadow-gold);
+
+    transition: var(--transition);
+
+    overflow: hidden;
+
+}
+
+
+.doctor-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -100%;
+
+    width: 50%;
+
+    height: 100%;
+
+    background: linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255, 255, 255, 0.07),
+
+        transparent
+
+    );
+
+    transform: skewX(-20deg);
+
+    transition: 0.8s;
+
+}
+
+
+.doctor-card:hover::before {
+
+    left: 150%;
+
+}
+
+
+.doctor-card:hover {
+
+    transform: translateY(-8px);
+
+    border-color: rgba(255, 209, 102, 0.55);
+
+    box-shadow: 0 15px 50px rgba(255, 209, 102, 0.12);
+
+}
+
+
+.doctor-icon {
+
+    font-size: 65px;
+
+    display: inline-block;
+
+    filter: drop-shadow(
+        0 0 15px rgba(255, 209, 102, 0.4)
+    );
+
+    animation: floating 3s ease-in-out infinite;
+
+}
+
+
+.doctor-card h3 {
+
+    font-family: var(--font-heading);
+
+    color: var(--gold);
+
+    font-size: 28px;
+
+    margin: 20px 0;
+
+}
+
+
+.doctor-card p {
+
+    color: var(--text-muted);
+
+    font-size: 14px;
+
+    line-height: 2.2;
+
+    max-width: 600px;
+
+    margin: auto;
+
+}
+
+
+.doctor-highlight {
+
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 12px 20px;
+
+    border: 1px solid rgba(255, 209, 102, 0.4);
+
+    border-radius: 30px;
+
+    color: var(--gold);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* Medical Cards */
+
+.medical-cards {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+
+    max-width: 1100px;
+
+    margin: 55px auto 0;
+
+}
+
+
+.medical-card {
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    background: var(--bg-card);
+
+    transition: var(--transition);
+
+}
+
+
+.medical-card:hover {
+
+    transform: translateY(-10px);
+
+    background: rgba(255, 209, 102, 0.07);
+
+    border-color: var(--gold);
+
+}
+
+
+.medical-card span {
+
+    display: block;
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+
+    animation: floating 3s ease-in-out infinite;
+
+}
+
+
+.medical-card h3 {
+
+    color: var(--gold);
+
+    font-family: var(--font-heading);
+
+    font-size: 19px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.medical-card p {
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+    line-height: 1.9;
+
+}
+
+
+/* =========================================
+   9. WISHES SECTION
+   ========================================= */
+
+.wishes-section {
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(255, 118, 185, 0.08),
+            transparent 60%
+        );
+
+}
+
+
+.wish-card {
+
+    position: relative;
+
+    max-width: 750px;
+
+    padding: 60px 45px;
+
+    margin: auto;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background: linear-gradient(
+
+        145deg,
+
+        rgba(255, 255, 255, 0.09),
+
+        rgba(255, 255, 255, 0.025)
+
+    );
+
+    border: 1px solid rgba(255, 118, 185, 0.25);
+
+    box-shadow: 0 0 45px rgba(255, 118, 185, 0.08);
+
+    transition: var(--transition);
+
+}
+
+
+.wish-card:hover {
+
+    transform: scale(1.015);
+
+    border-color: var(--pink);
+
+    box-shadow: 0 0 55px rgba(255, 118, 185, 0.15);
+
+}
+
+
+.wish-decoration {
+
+    color: var(--gold);
+
+    font-size: 35px;
+
+    letter-spacing: 15px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.wish-card h2 {
+
+    font-family: var(--font-heading);
+
+    color: var(--pink);
+
+    font-size: 30px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.wish-card p {
+
+    color: var(--text-muted);
+
+    font-size: 14px;
+
+    line-height: 2.2;
+
+    margin: 18px 0;
+
+}
+
+
+.wish-card h3 {
+
+    color: var(--gold);
+
+    font-family: var(--font-heading);
+
+    font-size: 26px;
+
+    margin-top: 35px;
+
+}
+
+
+.wish-footer {
+
+    margin-top: 35px;
+
+    color: rgba(255, 255, 255, 0.4);
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+}
+
+
+/* =========================================
+   10. FUTURE DOCTOR SECTION
+   ========================================= */
+
+.future-section {
+
+    min-height: 700px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background: radial-gradient(
+
+        ellipse at center,
+
+        rgba(156, 117, 255, 0.15),
+
+        transparent 65%
+
+    );
+
+}
+
+
+.future-content {
+
+    max-width: 750px;
+
+}
+
+
+.future-icon {
+
+    display: inline-block;
+
+    font-size: 80px;
+
+    margin-bottom: 25px;
+
+    animation: floating 3s ease-in-out infinite;
+
+    filter: drop-shadow(
+        0 0 20px rgba(156, 117, 255, 0.3)
+    );
+
+}
+
+
+.future-content h2 {
+
+    font-family: var(--font-heading);
+
+    font-size: 35px;
+
+    margin-top: 20px;
+
+}
+
+
+.future-content h1 {
+
+    font-family: var(--font-heading);
+
+    font-size: clamp(40px, 8vw, 85px);
+
+    font-weight: 800;
+
+    margin: 15px 0;
+
+    background: linear-gradient(
+
+        90deg,
+
+        var(--gold-light),
+
+        var(--gold),
+
+        var(--pink)
+
+    );
+
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+    animation: goldShine 4s linear infinite;
+
+    text-shadow: 0 0 35px rgba(255, 209, 102, 0.1);
+
+}
+
+
+.future-content p {
+
+    color: var(--text-muted);
+
+    font-size: 14px;
+
+    line-height: 2.2;
+
+    max-width: 600px;
+
+    margin: 20px auto;
+
+}
+
+
+.future-quote {
+
+    display: inline-block;
+
+    color: var(--gold);
+
+    font-family: var(--font-heading);
+
+    font-size: 17px;
+
+    margin-top: 30px;
+
+    padding: 15px 25px;
+
+    border-left: 2px solid var(--gold);
+
+    border-right: 2px solid var(--gold);
+
+}
+
+
+.future-decoration {
+
+    font-size: 30px;
+
+    margin-top: 35px;
+
+    letter-spacing: 15px;
+
+}
+
+
+/* =========================================
+   11. FINAL SECTION
+   ========================================= */
+
+.final-section {
+
+    min-height: 600px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background: linear-gradient(
+
+        180deg,
+
+        transparent,
+
+        rgba(255, 157, 66, 0.08)
+
+    );
+
+}
+
+
+.final-content {
+
+    max-width: 750px;
+
+}
+
+
+.final-diya {
+
+    font-size: 85px;
+
+    animation: diyaGlow 2s infinite alternate;
+
+}
+
+
+.final-content h1 {
+
+    font-family: var(--font-heading);
+
+    font-size: clamp(35px, 6vw, 60px);
+
+    color: var(--gold);
+
+    margin: 25px 0;
+
+}
+
+
+.final-content p {
+
+    color: var(--text-muted);
+
+    font-size: 14px;
+
+    line-height: 2;
+
+    max-width: 550px;
+
+    margin: auto;
+
+}
+
+
+.final-content h2 {
+
+    font-family: var(--font-heading);
+
+    color: var(--pink);
+
+    font-size: 26px;
+
+    margin-top: 35px;
+
+}
+
+
+.final-stars {
+
+    font-size: 25px;
+
+    letter-spacing: 12px;
+
+    margin-top: 30px;
+
+    animation: starsGlow 2s infinite alternate;
+
+}
+
+
+@keyframes starsGlow {
+
+    from {
+
+        opacity: 0.55;
+
+        filter: brightness(0.8);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        filter: brightness(1.5);
+
+    }
+
+}
+
+
+/* =========================================
+   12. FOOTER
+   ========================================= */
+
+.footer {
+
+    position: relative;
+
+    z-index: 4;
+
+    text-align: center;
+
+    padding: 35px 20px;
+
+    background: rgba(0, 0, 0, 0.25);
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+.footer p {
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+}
+
+
+.footer h3 {
+
+    color: var(--gold);
+
+    font-family: var(--font-heading);
+
+    font-size: 20px;
+
+    margin: 10px 0;
+
+}
+
+
+.footer .copyright {
+
+    color: rgba(255, 255, 255, 0.3);
+
+    font-size: 10px;
+
+    margin-top: 15px;
+
+}
+
+
+/* =========================================
+   13. COMMON ANIMATIONS
+   ========================================= */
+
+@keyframes floating {
+
+    0% {
+
+        transform: translateY(0);
+
+    }
+
+    50% {
+
+        transform: translateY(-12px);
+
+    }
+
+    100% {
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(35px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================================
+   14. RESPONSIVE DESIGN
+   ========================================= */
+
+
+/* Tablets */
+
+@media (max-width: 900px) {
+
+    .navbar {
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+    }
+
+    .nav-links {
+
+        gap: 18px;
+
+    }
+
+    .medical-cards {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+
+/* Mobile Phones */
+
+@media (max-width: 600px) {
+
+    html {
+
+        scroll-padding-top: 120px;
+
+    }
+
+
+    .navbar {
+
+        padding: 12px 4%;
+
+        gap: 12px;
+
+    }
+
+
+    .logo {
+
+        font-size: 14px;
+
+    }
+
+
+    .logo-icon {
+
+        font-size: 23px;
+
+    }
+
+
+    .nav-links {
+
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 17px;
+
+        overflow-x: auto;
+
+        padding: 5px 0;
+
+    }
+
+
+    .nav-links a {
+
+        font-size: 11px;
+
+        white-space: nowrap;
+
+    }
+
+
+    .music-button {
+
+        padding: 8px 12px;
+
+        font-size: 10px;
+
+    }
+
+
+    section {
+
+        padding: 85px 6%;
+
+    }
+
+
+    .hero-section {
+
+        min-height: calc(100svh - 110px);
+
+        padding: 55px 6%;
+
+    }
+
+
+    .hero-top-text {
+
+        font-size: 9px;
+
+        letter-spacing: 2px;
+
+    }
+
+
+    .greeting-small {
+
+        font-size: 11px;
+
+    }
+
+
+    .main-title {
+
+        font-size: clamp(48px, 13vw, 75px);
+
+    }
+
+
+    .name-title {
+
+        font-size: 32px;
+
+    }
+
+
+    .hero-description {
+
+        font-size: 12px;
+
+        line-height: 2;
+
+    }
+
+
+    .fireworks-gif {
+
+        width: 145px;
+
+    }
+
+
+    .explore-button {
+
+        font-size: 10px;
+
+        padding: 13px 20px;
+
+    }
+
+
+    .hero-section::before {
+
+        width: 250px;
+
+        height: 250px;
+
+    }
+
+
+    .hero-section::after {
+
+        width: 350px;
+
+        height: 350px;
+
+    }
+
+
+    .section-heading {
+
+        margin-bottom: 40px;
+
+    }
+
+
+    .doctor-card {
+
+        padding: 40px 22px;
+
+    }
+
+
+    .doctor-card h3 {
+
+        font-size: 22px;
+
+    }
+
+
+    .doctor-card p {
+
+        font-size: 12px;
+
+    }
+
+
+    .doctor-highlight {
+
+        font-size: 9px;
+
+        letter-spacing: 1px;
+
+        line-height: 2;
+
+    }
+
+
+    .medical-cards {
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+
+    }
+
+
+    .medical-card {
+
+        padding: 30px 20px;
+
+    }
+
+
+    .wish-card {
+
+        padding: 40px 22px;
+
+    }
+
+
+    .wish-card h2 {
+
+        font-size: 25px;
+
+    }
+
+
+    .wish-card p {
+
+        font-size: 12px;
+
+    }
+
+
+    .future-section {
+
+        min-height: 550px;
+
+    }
+
+
+    .future-icon {
+
+        font-size: 65px;
+
+    }
+
+
+    .future-content h2 {
+
+        font-size: 27px;
+
+    }
+
+
+    .future-content p {
+
+        font-size: 12px;
+
+    }
+
+
+    .future-quote {
+
+        font-size: 13px;
+
+    }
+
+
+    .final-section {
+
+        min-height: 500px;
+
+    }
+
+
+    .final-diya {
+
+        font-size: 70px;
+
+    }
+
+
+    .final-content p {
+
+        font-size: 12px;
+
+    }
+
+
+    .final-content h2 {
+
+        font-size: 21px;
+
+    }
+
+}
+
+
+/* =========================================
+   15. ACCESSIBILITY
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+    }
+
+  }
