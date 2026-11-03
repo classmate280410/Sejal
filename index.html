@@ -1,307 +1,649 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- Website character encoding -->
+    <meta charset="UTF-8">
 
-<style>
+    <!-- Mobile responsive support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+    <!-- Website description -->
+    <meta name="description"
+          content="A special Diwali celebration for Sejal, a future doctor.">
 
-body{
-font-family:Poppins,sans-serif;
-overflow:hidden;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(-45deg,#ff4d8d,#ff85b5,#ffd6e7,#ff99cc);
-background-size:400% 400%;
-animation:bg 12s ease infinite;
-position:relative;
-}
+    <!-- Browser theme colour -->
+    <meta name="theme-color" content="#100b24">
 
-@keyframes bg{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
+    <!-- Website title -->
+    <title>Happy Diwali Sejal | Future Dr.</title>
 
-.card{
-position:relative;
-z-index:5;
-width:90%;
-max-width:900px;
-padding:40px;
-text-align:center;
-border-radius:30px;
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(18px);
-box-shadow:0 20px 60px rgba(0,0,0,.2);
-}
 
-h1{
-font-family:'Dancing Script',cursive;
-font-size:70px;
-color:white;
-text-shadow:0 0 20px hotpink;
-min-height:90px;
-}
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
-h2{
-color:white;
-margin-top:15px;
-font-size:28px;
-text-shadow:0 0 10px red;
-}
-
-.teddy{
-font-size:120px;
-margin:25px 0;
-animation:bounce 2s infinite;
-filter:drop-shadow(0 0 15px pink);
-}
-
-@keyframes bounce{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-25px);}
-}
-
-.buttons{
-display:flex;
-justify-content:center;
-gap:20px;
-margin-top:30px;
-flex-wrap:wrap;
-}
-
-button{
-padding:16px 35px;
-border:none;
-border-radius:50px;
-font-size:20px;
-font-weight:bold;
-cursor:pointer;
-transition:.3s;
-}
-
-#yes{
-background:#ff2b72;
-color:white;
-box-shadow:0 0 20px hotpink;
-}
-
-#no{
-background:white;
-color:#ff2b72;
-}
-
-#hearts,
-#sparkles,
-#petals{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-overflow:hidden;
-pointer-events:none;
-}
-
-.heart{
-position:absolute;
-animation:heartFloat linear infinite;
-}
-
-.sparkle{
-position:absolute;
-width:4px;
-height:4px;
-background:white;
-border-radius:50%;
-animation:twinkle 2s infinite;
-}
-
-.petal{
-position:absolute;
-animation:fall linear infinite;
-}
-
-@keyframes heartFloat{
-
-0%{
-transform:translateY(100vh) scale(.5);
-opacity:0;
-}
-
-20%{
-opacity:1;
-}
-
-100%{
-transform:translateY(-120px) scale(1.5);
-opacity:0;
-}
-
-}
-
-@keyframes twinkle{
-
-0%,100%{
-opacity:.2;
-transform:scale(.5);
-}
-
-50%{
-opacity:1;
-transform:scale(2);
-}
-
-}
-
-@keyframes fall{
-
-0%{
-transform:translateY(-100px) rotate(0deg);
-}
-
-100%{
-transform:translateY(110vh) rotate(360deg);
-}
-
-}
-
-@media(max-width:700px){
-
-h1{
-font-size:45px;
-}
-
-h2{
-font-size:22px;
-}
-
-.teddy{
-font-size:90px;
-}
-
-button{
-width:150px;
-}
-
-}
-
-</style>
 </head>
+
 
 <body>
 
-<div id="hearts"></div>
-<div id="sparkles"></div>
-<div id="petals"></div>
 
-<div class="card">
+    <!-- ================================== -->
+    <!-- LOADING SCREEN -->
+    <!-- ================================== -->
 
-<div class="teddy">🧸</div>
+    <div id="loader">
 
-<h1 id="title"></h1>
+        <div class="loader-content">
 
-<h2>I LOVE YOU BACHA ❤️</h2>
+            <div class="loader-diya">🪔</div>
 
-<div class="buttons">
+            <h2>Lighting Up Your Dreams</h2>
 
-<button id="yes">YES ❤️</button>
+            <p>Something magical is coming...</p>
 
-<button id="no">NO 😢</button>
+            <div class="loader-line"></div>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
-<script>
 
-const txt="Will You Be My Valentine, RUCHITA? ❤️";
 
-let i=0;
+    <!-- ================================== -->
+    <!-- BACKGROUND EFFECT CONTAINERS -->
+    <!-- ================================== -->
 
-function type(){
+    <!-- Animated fireworks will appear here -->
 
-if(i<txt.length){
+    <div id="fireworks-container"></div>
 
-document.getElementById("title").innerHTML+=txt.charAt(i);
 
-i++;
+    <!-- Floating particles -->
 
-setTimeout(type,90);
+    <div id="particles-container"></div>
 
-}
 
-}
+    <!-- Floating diyas -->
 
-type();
+    <div id="diyas-container"></div>
 
-for(let i=0;i<30;i++){
 
-let h=document.createElement("div");
+    <!-- Future JavaScript animation canvas -->
 
-h.className="heart";
+    <canvas id="animationCanvas"></canvas>
 
-h.innerHTML="❤️";
 
-h.style.left=Math.random()*100+"vw";
 
-h.style.fontSize=(15+Math.random()*25)+"px";
+    <!-- ================================== -->
+    <!-- WEBSITE NAVIGATION -->
+    <!-- ================================== -->
 
-h.style.animationDuration=(5+Math.random()*6)+"s";
+    <header class="main-header">
 
-h.style.animationDelay=Math.random()*5+"s";
+        <nav class="navbar">
 
-document.getElementById("hearts").appendChild(h);
+            <div class="logo">
 
-}
+                <span class="logo-icon">🪔</span>
 
-for(let i=0;i<80;i++){
+                <span>SEJAL'S WORLD</span>
 
-let s=document.createElement("div");
+            </div>
 
-s.className="sparkle";
 
-s.style.left=Math.random()*100+"vw";
+            <div class="nav-links">
 
-s.style.top=Math.random()*100+"vh";
+                <a href="#home">Home</a>
 
-s.style.animationDelay=Math.random()*2+"s";
+                <a href="#dream">Her Dream</a>
 
-document.getElementById("sparkles").appendChild(s);
+                <a href="#wishes">Wishes</a>
 
-}
+                <a href="#future">Future Dr.</a>
 
-for(let i=0;i<25;i++){
+            </div>
 
-let p=document.createElement("div");
 
-p.className="petal";
+            <!-- Music control -->
 
-p.innerHTML="🌸";
+            <button id="musicToggle"
+                    class="music-button"
+                    aria-label="Play Diwali music"
+                    aria-pressed="false">
 
-p.style.left=Math.random()*100+"vw";
+                🎵 Play Music
 
-p.style.animationDuration=(5+Math.random()*7)+"s";
+            </button>
 
-p.style.animationDelay=Math.random()*4+"s";
 
-document.getElementById("petals").appendChild(p);
+        </nav>
 
-}
+    </header>
 
-</script>
+
+
+    <!-- ================================== -->
+    <!-- MAIN HERO SECTION -->
+    <!-- ================================== -->
+
+    <main>
+
+
+        <section id="home" class="hero-section">
+
+
+            <!-- Decorative top text -->
+
+            <div class="hero-top-text">
+
+                ✨ A LITTLE MAGIC JUST FOR YOU ✨
+
+            </div>
+
+
+
+            <!-- Main greeting -->
+
+            <div class="hero-content">
+
+                <p class="greeting-small">
+
+                    Wishing You A Beautiful Festival Of Lights
+
+                </p>
+
+
+                <h1 class="main-title">
+
+                    Happy
+
+                    <span class="gold-text">Diwali</span>
+
+                </h1>
+
+
+                <h2 class="name-title">
+
+                    Sejal ❤️
+
+                </h2>
+
+
+                <p class="hero-description">
+
+                    May your life shine brighter than a thousand diyas,
+                    your dreams rise higher than the fireworks,
+                    and your future glow with endless possibilities.
+
+                </p>
+
+
+                <!-- Animated GIF -->
+
+                <div class="hero-gif">
+
+                    <img
+                        src="assets/diwali-fireworks.gif"
+                        alt="Beautiful Diwali fireworks"
+                        class="fireworks-gif"
+                    >
+
+                </div>
+
+
+
+                <!-- Explore button -->
+
+                <a href="#dream" class="explore-button">
+
+                    Explore Your Magical World
+
+                    <span> ↓ </span>
+
+                </a>
+
+
+            </div>
+
+
+
+            <!-- Bottom decorative text -->
+
+            <div class="hero-bottom">
+
+                MADE WITH ❤️ FOR SEJAL
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================================== -->
+        <!-- DOCTOR DREAM SECTION -->
+        <!-- ================================== -->
+
+
+        <section id="dream" class="dream-section">
+
+
+            <div class="section-heading">
+
+                <span class="section-label">
+
+                    HER BIGGEST DREAM
+
+                </span>
+
+
+                <h2>
+
+                    Future <span class="gold-text">Dr. Sejal</span>
+
+                </h2>
+
+
+                <p>
+
+                    Every great doctor starts with a dream.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- Doctor card -->
+
+            <div class="doctor-card">
+
+
+                <div class="doctor-icon">
+
+                    🩺
+
+                </div>
+
+
+                <h3>
+
+                    The Future White Coat
+
+                </h3>
+
+
+                <p>
+
+                    One day, the books she studies today
+                    will help her change someone's tomorrow.
+
+                    One day, all her dedication will become
+                    a beautiful achievement.
+
+                </p>
+
+
+                <div class="doctor-highlight">
+
+                    DREAM BIG. STUDY SMART. BECOME A DOCTOR.
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Medical motivation cards -->
+
+            <div class="medical-cards">
+
+
+                <div class="medical-card">
+
+                    <span>📚</span>
+
+                    <h3>Knowledge</h3>
+
+                    <p>
+
+                        Every page brings her closer
+                        to her dream.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="medical-card">
+
+                    <span>🧠</span>
+
+                    <h3>Dedication</h3>
+
+                    <p>
+
+                        Small daily efforts build
+                        extraordinary futures.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="medical-card">
+
+                    <span>🩺</span>
+
+                    <h3>Future Doctor</h3>
+
+                    <p>
+
+                        A dream worth working
+                        hard for.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+
+        <!-- ================================== -->
+        <!-- SPECIAL DIWALI WISHES -->
+        <!-- ================================== -->
+
+
+        <section id="wishes" class="wishes-section">
+
+
+            <div class="section-heading">
+
+                <span class="section-label">
+
+                    A LITTLE MESSAGE
+
+                </span>
+
+
+                <h2>
+
+                    For Someone <span class="gold-text">Special</span>
+
+                </h2>
+
+            </div>
+
+
+
+            <div class="wish-card">
+
+
+                <div class="wish-decoration">
+
+                    ✨ 🪔 ✨
+
+                </div>
+
+
+                <h2>
+
+                    Dear Sejal,
+
+                </h2>
+
+
+                <p>
+
+                    This Diwali, I wish that every darkness
+                    in your life turns into light.
+
+                </p>
+
+
+                <p>
+
+                    May your smile always shine,
+                    your heart always stay happy,
+                    and your dreams become reality.
+
+                </p>
+
+
+                <p>
+
+                    Never stop believing in yourself.
+
+                    The world needs more wonderful
+                    people who dream of making a difference.
+
+                </p>
+
+
+                <h3>
+
+                    Happy Diwali! ❤️
+
+                </h3>
+
+
+                <div class="wish-footer">
+
+                    WITH LOTS OF BEST WISHES
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+
+        <!-- ================================== -->
+        <!-- FUTURE DOCTOR SECTION -->
+        <!-- ================================== -->
+
+
+        <section id="future" class="future-section">
+
+
+            <div class="future-content">
+
+
+                <div class="future-icon">
+
+                    👩‍⚕️
+
+                </div>
+
+
+                <span class="section-label">
+
+                    THE FUTURE IS BRIGHT
+
+                </span>
+
+
+                <h2>
+
+                    One Day...
+
+                </h2>
+
+
+                <h1>
+
+                    DR. SEJAL
+
+                </h1>
+
+
+                <p>
+
+                    The little girl with a big dream
+                    will one day wear the white coat
+                    she has always dreamed about.
+
+                </p>
+
+
+                <div class="future-quote">
+
+                    "Let your dreams be bigger
+                    than your fears."
+
+                </div>
+
+
+                <div class="future-decoration">
+
+                    🩺 ❤️ 🩺
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================================== -->
+        <!-- FINAL DIWALI MESSAGE -->
+        <!-- ================================== -->
+
+
+        <section class="final-section">
+
+
+            <div class="final-content">
+
+
+                <div class="final-diya">
+
+                    🪔
+
+                </div>
+
+
+                <h1>
+
+                    Shine On, Sejal!
+
+                </h1>
+
+
+                <p>
+
+                    May this Diwali bring you
+                    happiness, peace, success
+                    and beautiful memories.
+
+                </p>
+
+
+                <h2>
+
+                    Happy Diwali 2026!
+
+                </h2>
+
+
+                <div class="final-stars">
+
+                    ✨ ✨ ✨ ✨ ✨
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+    </main>
+
+
+
+
+    <!-- ================================== -->
+    <!-- BACKGROUND MUSIC -->
+    <!-- ================================== -->
+
+
+    <audio id="diwaliSong" preload="none">
+
+        <source
+            src="assets/diwali-song.mp3"
+            type="audio/mpeg"
+        >
+
+        Your browser does not support audio.
+
+    </audio>
+
+
+
+
+    <!-- ================================== -->
+    <!-- FOOTER -->
+    <!-- ================================== -->
+
+
+    <footer class="footer">
+
+
+        <p>
+
+            Crafted with ❤️ and countless wishes.
+
+        </p>
+
+
+        <h3>
+
+            For Sejal 🪔
+
+        </h3>
+
+
+        <p class="copyright">
+
+            © 2026 | A Special Diwali Creation
+
+        </p>
+
+
+    </footer>
+
+
+
+
+    <!-- ================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ================================== -->
+
+
+    <script src="js/script.js"></script>
+
 
 </body>
-</html>
+
+  </html>
